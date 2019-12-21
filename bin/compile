@@ -57,5 +57,9 @@ chmod +x plowup
 PROFILE_PATH="$BUILD_DIR/.profile.d/plowup.sh"
 echo 'export PATH="$PATH:${HOME}/vendor"' >> $PROFILE_PATH
 
+
+bash plowmod --install
+
+
 echo "-----> Done"
 echo "       Thanks for using this buildpack. [ Hasibul ]"
