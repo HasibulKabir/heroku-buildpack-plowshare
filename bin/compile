@@ -1,0 +1,61 @@
+#!/bin/sh
+
+echo "-----> Installing heroku buildpack plowshare by Hasibul Kobir"
+BUILD_DIR=$1
+VENDOR="$BUILD_DIR/vendor"
+mkdir -p $VENDOR
+cd $VENDOR
+DOWNLOAD_URL="https://raw.githubusercontent.com/self10/plowshare/master/src/core.sh"
+curl -O --silent $DOWNLOAD_URL
+chmod +x core.sh
+
+
+DOWNLOAD_URL="https://raw.githubusercontent.com/self10/plowshare/master/src/delete.sh"
+curl -O --silent $DOWNLOAD_URL
+mv delete.sh plowdel
+chmod +x plowdel
+PROFILE_PATH="$BUILD_DIR/.profile.d/plowdel.sh"
+echo 'export PATH="$PATH:${HOME}/vendor"' >> $PROFILE_PATH
+
+
+DOWNLOAD_URL="https://raw.githubusercontent.com/self10/plowshare/master/src/download.sh"
+curl -O --silent $DOWNLOAD_URL
+mv download.sh plowdown
+chmod +x plowdown
+PROFILE_PATH="$BUILD_DIR/.profile.d/plowdown.sh"
+echo 'export PATH="$PATH:${HOME}/vendor"' >> $PROFILE_PATH
+
+
+DOWNLOAD_URL="https://raw.githubusercontent.com/self10/plowshare/master/src/list.sh"
+curl -O --silent $DOWNLOAD_URL 
+mv list.sh plowlist
+chmod +x plowlist
+PROFILE_PATH="$BUILD_DIR/.profile.d/plowlist.sh"
+echo 'export PATH="$PATH:${HOME}/vendor"' >> $PROFILE_PATH
+
+
+DOWNLOAD_URL="https://raw.githubusercontent.com/self10/plowshare/master/src/mod.sh"
+curl -O --silent $DOWNLOAD_URL
+mv mod.sh plowmod
+chmod +x plowmod
+PROFILE_PATH="$BUILD_DIR/.profile.d/plowmod.sh"
+echo 'export PATH="$PATH:${HOME}/vendor"' >> $PROFILE_PATH
+
+
+DOWNLOAD_URL="https://raw.githubusercontent.com/self10/plowshare/master/src/probe.sh"
+curl -O --silent $DOWNLOAD_URL
+mv probe.sh plowprobe
+chmod +x plowprobe
+PROFILE_PATH="$BUILD_DIR/.profile.d/plowprobe.sh"
+echo 'export PATH="$PATH:${HOME}/vendor"' >> $PROFILE_PATH
+
+
+DOWNLOAD_URL="https://raw.githubusercontent.com/self10/plowshare/master/src/upload.sh"
+curl -O --silent $DOWNLOAD_URL
+mv upload.sh plowup
+chmod +x plowup
+PROFILE_PATH="$BUILD_DIR/.profile.d/plowup.sh"
+echo 'export PATH="$PATH:${HOME}/vendor"' >> $PROFILE_PATH
+
+echo "-----> Done"
+echo "       Thanks for using this buildpack. [ Hasibul ]"
